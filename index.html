@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Melody of the falm</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game-container">
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- START SCREEN (lobby-style, character shows through canvas) -->
+  <div id="start-screen" class="overlay-screen lobby-screen">
+    <div class="lobby-top-bar">
+      <div class="mode-chip">ENDLESS RUN</div>
+      <div class="top-bar-right">
+        <div id="wallet-chip" class="wallet-chip">🪙 0</div>
+        <button id="characters-btn" class="icon-btn" aria-label="characters">🥷</button>
+        <button id="settings-btn" class="icon-btn" aria-label="settings">⚙️</button>
+        <button id="sound-toggle-btn" class="icon-btn" aria-label="sound">🔊</button>
+      </div>
+    </div>
+
+    <div class="title-wrap">
+      <div class="abbr-badge">LHB</div>
+      <h1 class="game-title">MELODY<span>OF THE FALM</span></h1>
+      <p class="subtitle">اهرب من الحمم ... واصعد للأعلى</p>
+    </div>
+
+    <div class="lobby-bottom-bar">
+      <div class="best-score-badge" id="start-best-score">BEST&nbsp;0</div>
+      <button id="play-btn" class="primary-btn">PLAY</button>
+      <div class="lobby-hint">اسحب للحركة، اضغط للقفز</div>
+    </div>
+  </div>
+
+  <!-- HUD (during gameplay) -->
+  <div id="hud" class="hidden">
+    <div class="hud-left">
+      <div id="score-display">0</div>
+      <div id="hud-best">BEST 0</div>
+      <div id="hud-coins">🪙 0</div>
+      <div id="hud-buffs"></div>
+    </div>
+    <div class="hud-right">
+      <div id="hud-multiplier" class="hidden">RISK ×2</div>
+      <button id="pause-btn" class="icon-btn hud-pause" aria-label="pause">❚❚</button>
+    </div>
+  </div>
+  <div id="milestone-flash" class="milestone-flash"></div>
+
+  <!-- PAUSE SCREEN -->
+  <div id="pause-screen" class="overlay-screen hidden">
+    <h2 class="panel-title">Paused</h2>
+    <button id="resume-btn" class="primary-btn">Resume</button>
+    <button id="restart-from-pause-btn" class="secondary-btn">Restart</button>
+  </div>
+
+  <!-- GAME OVER SCREEN -->
+  <div id="gameover-screen" class="overlay-screen hidden">
+    <h2 class="panel-title gameover-title">GAME OVER</h2>
+    <div class="score-row">
+      <div class="score-box">
+        <span class="score-label">Score</span>
+        <span id="final-score" class="score-value">0</span>
+      </div>
+      <div class="score-box">
+        <span class="score-label">Best</span>
+        <span id="final-best" class="score-value">0</span>
+      </div>
+    </div>
+    <div id="new-best-badge" class="hidden">NEW BEST!</div>
+    <div class="coins-earned-row">
+      <span id="final-coins" class="coins-earned">+0</span>
+      <span class="coins-earned-label">عملات هذه الجولة · المحفظة: <span id="final-wallet">0</span> 🪙</span>
+    </div>
+    <div class="leaderboard-box">
+      <div class="leaderboard-title">أفضل 5 نتائج</div>
+      <div id="leaderboard-list" class="leaderboard-list"></div>
+    </div>
+    <button id="restart-btn" class="primary-btn">RESTART</button>
+  </div>
+
+  <!-- CHARACTER SELECT / SHOP -->
+  <div id="character-select-screen" class="overlay-screen hidden">
+    <div class="panel-header">
+      <h2 class="panel-title">الشخصيات</h2>
+      <div id="wallet-chip-2" class="wallet-chip">🪙 0</div>
+    </div>
+    <div id="char-insufficient" class="insufficient-badge">لا توجد عملات كافية</div>
+    <div id="character-list" class="character-list"></div>
+    <button id="character-close-btn" class="secondary-btn">رجوع</button>
+  </div>
+
+  <!-- SETTINGS -->
+  <div id="settings-screen" class="overlay-screen hidden">
+    <h2 class="panel-title">الإعدادات</h2>
+    <div class="settings-row">
+      <span>الاهتزاز (Haptics)</span>
+      <button id="haptics-toggle" class="toggle-btn">ON</button>
+    </div>
+    <div class="settings-row">
+      <span>وضع سهل (حمم أبطأ)</span>
+      <button id="easymode-toggle" class="toggle-btn">OFF</button>
+    </div>
+    <button id="settings-close-btn" class="secondary-btn">رجوع</button>
+  </div>
+
+  <!-- MOBILE CONTROLS -->
+  <div id="mobile-controls" class="hidden">
+    <div class="control-cluster left">
+      <button id="btn-left" class="ctrl-btn" aria-label="left">◀</button>
+    </div>
+    <div class="control-cluster right">
+      <button id="btn-right" class="ctrl-btn" aria-label="right">▶</button>
+      <button id="btn-jump" class="ctrl-btn jump-btn" aria-label="jump">▲</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
